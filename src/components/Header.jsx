@@ -16,7 +16,11 @@ const buttonStyles = {
     justifyContent: "center",
     gap: "10px",
     cursor: "pointer",
-    transition: "background-color 0.3s, color 0.3s",
+    transition: "border-color 0.3s",
+    fontFamily: "'FiraGO', sans-serif",
+    fontWeight: 400,
+    fontSize: "16px",
+    lineHeight: "100%",
   },
   primaryButton: {
     width: "268px",
@@ -31,7 +35,11 @@ const buttonStyles = {
     color: "#FFFFFF",
     border: "none",
     cursor: "pointer",
-    transition: "background-color 0.3s, color 0.3s, border 0.3s",
+    transition: "background-color 0.3s",
+    fontFamily: "'FiraGO', sans-serif",
+    fontWeight: 400,
+    fontSize: "16px",
+    lineHeight: "100%",
   },
 };
 
@@ -45,11 +53,10 @@ const Header = () => {
         padding: "30px 120px",
         backgroundColor: "#FFFFFF",
         borderBottom: "1px solid #E0E0E0",
-        width: "100%", 
+        width: "100%",
         boxSizing: "border-box",
       }}
     >
-      
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <h1
           style={{
@@ -75,12 +82,10 @@ const Header = () => {
         <button
           style={buttonStyles.secondaryButton}
           onMouseOver={(e) => {
-            e.currentTarget.style.backgroundColor = "#8338EC";
-            e.currentTarget.style.color = "#FFFFFF";
+            e.currentTarget.style.borderColor = "#B588F4";
           }}
           onMouseOut={(e) => {
-            e.currentTarget.style.backgroundColor = "#FFFFFF";
-            e.currentTarget.style.color = "#000000";
+            e.currentTarget.style.borderColor = "#8338EC";
           }}
         >
           თანამშრომლის შექმნა
@@ -89,24 +94,16 @@ const Header = () => {
         <button
           style={buttonStyles.primaryButton}
           onMouseOver={(e) => {
-            e.currentTarget.style.backgroundColor = "#FFFFFF";
-            e.currentTarget.style.color = "#000000";
-            e.currentTarget.style.border = "1px solid #8338EC";
-            e.currentTarget.querySelector("img").style.filter =
-              "brightness(0)";
+            e.currentTarget.style.backgroundColor = "#B588F4";
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.backgroundColor = "#8338EC";
-            e.currentTarget.style.color = "#FFFFFF";
-            e.currentTarget.style.border = "none";
-            e.currentTarget.querySelector("img").style.filter =
-              "brightness(1)";
           }}
         >
           <img
             src={plusLogo}
             alt="Plus Logo"
-            style={{ width: "20px", height: "20px", transition: "filter 0.3s" }}
+            style={{ width: "20px", height: "20px" }}
           />
           შექმენი ახალი დავალება
         </button>
