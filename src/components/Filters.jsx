@@ -2,37 +2,18 @@ import React, { useState, useEffect, useRef } from "react";
 import downLogo from "../assets/down.png";
 import upLogo from "../assets/up.png"; 
 import closeLogo from "../assets/close.png";
+import ButtonStyles from "../ui/ButtonStyles";
 
-const buttonStyles = {
-  tertiaryButton: {
-    width: "155px",
-    height: "35px",
-    padding: "8px 20px",
-    borderRadius: "20px",
-    backgroundColor: "#8338EC",
-    color: "#FFFFFF",
-    border: "none",
-    cursor: "pointer",
-    transition: "background-color 0.3s",
-    fontFamily: "'FiraGO', sans-serif",
-    fontWeight: 400,
-    fontSize: "16px",
-  },
-};
-
-const Filters = () => {
+const Filters = ({ setSelectedDepartments, setSelectedPriorities, setSelectedEmployees, selectedDepartments, selectedPriorities, selectedEmployees }) => {
   const [selectedFilter, setSelectedFilter] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [departments, setDepartments] = useState([]);
   const [priorities, setPriorities] = useState([]);
   const [employees, setEmployees] = useState([]);
-  const [selectedDepartments, setSelectedDepartments] = useState([]);
-  const [selectedPriorities, setSelectedPriorities] = useState([]);
-  const [selectedEmployees, setSelectedEmployees] = useState([]);
-
   const [tempDepartments, setTempDepartments] = useState([]);
   const [tempPriorities, setTempPriorities] = useState([]);
   const [tempEmployees, setTempEmployees] = useState([]);
+
 
   const dropdownRef = useRef(null);
   const parentRef = useRef(null);
@@ -54,7 +35,7 @@ const Filters = () => {
   useEffect(() => {
     fetch("https://momentum.redberryinternship.ge/api/employees", {
       headers: {
-        Authorization: "Bearer 9e72b0cd-f5cb-45a9-bc41-d390579b9cd3",
+        Authorization: "Bearer 9e74145e-719b-4838-9eef-0f916cac0f3b",
       },
     })
       .then((response) => response.json())
@@ -184,53 +165,63 @@ const renderDropdownContent = () => {
           </span>
         </div>
       ));
-    case "თანამშრომელი":
-      return employees.map((employee) => (
-        <div
-          key={employee.id}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            marginBottom: "15px",
-            cursor: "pointer",
-          }}
-          onClick={() => handleEmployeeSelect(employee)}
-        >
-          <input
-            type="checkbox"
-            checked={tempEmployees.includes(employee)}
-            onChange={() => handleEmployeeSelect(employee)}
+      case "თანამშრომელი":
+        return employees.map((employee) => (
+          <div
+            key={employee.id}
             style={{
-              width: "16px",
-              height: "16px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              marginBottom: "15px",
               cursor: "pointer",
             }}
-          />
-          <span
-            style={{
-              fontFamily: "'FiraGO', sans-serif",
-              fontWeight: 400,
-              fontSize: "16px",
-              color: "#000000",
-            }}
+            onClick={() => handleEmployeeSelect(employee)}
           >
-            {employee.name}
-          </span>
-        </div>
-      ));
+            <input
+              type="checkbox"
+              checked={tempEmployees.includes(employee)}
+              onChange={() => handleEmployeeSelect(employee)}
+              style={{
+                width: "16px",
+                height: "16px",
+                cursor: "pointer",
+              }}
+            />
+            <img
+              src={employee.avatar} 
+              alt="Employee Avatar"
+              style={{
+                width: "28px",
+                height: "28px",
+                borderRadius: "50%", 
+                objectFit: "cover",
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "'FiraGO', sans-serif",
+                fontWeight: 400,
+                fontSize: "16px",
+                color: "#000000",
+              }}
+            >
+              {employee.name} {employee.surname}
+            </span>
+          </div>
+        ));
     default:
       return null;
   }
 };
 
-  const applySelectedFilters = () => {
-    setSelectedDepartments(tempDepartments);
-    setSelectedPriorities(tempPriorities);
-    setSelectedEmployees(tempEmployees);
-    setIsDropdownOpen(false);
-    setSelectedFilter(null);
-  };
+const applySelectedFilters = () => {
+  setSelectedDepartments(tempDepartments);
+  setSelectedPriorities(tempPriorities);
+  setSelectedEmployees(tempEmployees.length > 0 ? [tempEmployees[0]] : []);
+  setIsDropdownOpen(false);
+  setSelectedFilter(null);
+};
 
   const removeSelectedFilter = (filterType, filter) => {
     switch (filterType) {
@@ -313,7 +304,7 @@ const renderDropdownContent = () => {
   };
 
   return (
-    <div style={{ width: "688px" }}>
+    <div style={{ width: "688px", padding: "30px 120px" }}>
       <div
         ref={parentRef}
         style={{
@@ -454,7 +445,7 @@ const renderDropdownContent = () => {
               }}
             >
               <button
-                style={buttonStyles.tertiaryButton}
+                style={ButtonStyles.tertiaryButton}
                 onMouseOver={(e) => {
                   e.currentTarget.style.backgroundColor = "#B588F4";
                 }}

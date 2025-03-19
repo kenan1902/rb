@@ -1,14 +1,12 @@
 import React from "react";
-import Header from "./components/Header";
-import Filters from "./components/Filters";
+import Home from "./pages/Home"; // Import the Home page
 
-function App() {
+const App = () => {
   return (
     <div>
-      <Header />
-      <Filters/>
+      <Home />
     </div>
   );
-}
+};
 
 export default App;
