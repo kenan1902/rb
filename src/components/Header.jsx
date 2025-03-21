@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import hourglassLogo from "../assets/hourglass.png";
 import plusLogo from "../assets/plus.png";
 import ButtonStyles from "../ui/ButtonStyles";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleCreateTaskClick = () => {
+    navigate("/create-task"); 
+  };
+
   return (
     <header
       style={{
@@ -58,6 +65,7 @@ const Header = () => {
           onMouseOut={(e) => {
             e.currentTarget.style.backgroundColor = "#8338EC";
           }}
+          onClick={handleCreateTaskClick}
         >
           <img
             src={plusLogo}
