@@ -15,9 +15,9 @@ const ButtonStyles = {
         transition: "background-color 0.3s",
         fontFamily: "'FiraGO', sans-serif",
         fontWeight: 400,
-        fontSize: "16px",
+        fontSize: "15px",
         lineHeight: "100%",
-      },
+    },
     secondaryButton: {
         width: "225px",
         height: "39px",
@@ -34,7 +34,7 @@ const ButtonStyles = {
         transition: "border-color 0.3s",
         fontFamily: "'FiraGO', sans-serif",
         fontWeight: 400,
-        fontSize: "16px",
+        fontSize: "15px",
         lineHeight: "100%",
     },
     tertiaryButton: {
@@ -50,7 +50,7 @@ const ButtonStyles = {
         fontFamily: "'FiraGO', sans-serif",
         fontWeight: 400,
         fontSize: "16px",
-        },
+    },
 };
 
 export default ButtonStyles;

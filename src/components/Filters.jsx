@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import downLogo from "../assets/down.png";
-import upLogo from "../assets/up.png"; 
+import upLogo from "../assets/up.png";
 import closeLogo from "../assets/close.png";
 import ButtonStyles from "../ui/ButtonStyles";
 
@@ -93,78 +93,78 @@ const Filters = ({ setSelectedDepartments, setSelectedPriorities, setSelectedEmp
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-const renderDropdownContent = () => {
-  switch (selectedFilter) {
-    case "დეპარტამენტი":
-      return departments.map((department) => (
-        <div
-          key={department.id}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            marginBottom: "15px",
-            cursor: "pointer",
-          }}
-          onClick={() => handleDepartmentSelect(department)}
-        >
-          <input
-            type="checkbox"
-            checked={tempDepartments.includes(department)}
-            onChange={() => handleDepartmentSelect(department)}
+  const renderDropdownContent = () => {
+    switch (selectedFilter) {
+      case "დეპარტამენტი":
+        return departments.map((department) => (
+          <div
+            key={department.id}
             style={{
-              width: "16px",
-              height: "16px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              marginBottom: "15px",
               cursor: "pointer",
             }}
-          />
-          <span
-            style={{
-              fontFamily: "'FiraGO', sans-serif",
-              fontWeight: 400,
-              fontSize: "16px",
-              color: "#000000",
-            }}
+            onClick={() => handleDepartmentSelect(department)}
           >
-            {department.name}
-          </span>
-        </div>
-      ));
-    case "პრიორიტეტი":
-      return priorities.map((priority) => (
-        <div
-          key={priority.id}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            marginBottom: "15px",
-            cursor: "pointer",
-          }}
-          onClick={() => handlePrioritySelect(priority)}
-        >
-          <input
-            type="checkbox"
-            checked={tempPriorities.includes(priority)}
-            onChange={() => handlePrioritySelect(priority)}
+            <input
+              type="checkbox"
+              checked={tempDepartments.includes(department)}
+              onChange={() => handleDepartmentSelect(department)}
+              style={{
+                width: "16px",
+                height: "16px",
+                cursor: "pointer",
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "'FiraGO', sans-serif",
+                fontWeight: 400,
+                fontSize: "16px",
+                color: "#000000",
+              }}
+            >
+              {department.name}
+            </span>
+          </div>
+        ));
+      case "პრიორიტეტი":
+        return priorities.map((priority) => (
+          <div
+            key={priority.id}
             style={{
-              width: "16px",
-              height: "16px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              marginBottom: "15px",
               cursor: "pointer",
             }}
-          />
-          <span
-            style={{
-              fontFamily: "'FiraGO', sans-serif",
-              fontWeight: 400,
-              fontSize: "16px",
-              color: "#000000",
-            }}
+            onClick={() => handlePrioritySelect(priority)}
           >
-            {priority.name}
-          </span>
-        </div>
-      ));
+            <input
+              type="checkbox"
+              checked={tempPriorities.includes(priority)}
+              onChange={() => handlePrioritySelect(priority)}
+              style={{
+                width: "16px",
+                height: "16px",
+                cursor: "pointer",
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "'FiraGO', sans-serif",
+                fontWeight: 400,
+                fontSize: "16px",
+                color: "#000000",
+              }}
+            >
+              {priority.name}
+            </span>
+          </div>
+        ));
       case "თანამშრომელი":
         return employees.map((employee) => (
           <div
@@ -189,12 +189,12 @@ const renderDropdownContent = () => {
               }}
             />
             <img
-              src={employee.avatar} 
+              src={employee.avatar}
               alt="Employee Avatar"
               style={{
                 width: "28px",
                 height: "28px",
-                borderRadius: "50%", 
+                borderRadius: "50%",
                 objectFit: "cover",
               }}
             />
@@ -210,18 +210,18 @@ const renderDropdownContent = () => {
             </span>
           </div>
         ));
-    default:
-      return null;
-  }
-};
+      default:
+        return null;
+    }
+  };
 
-const applySelectedFilters = () => {
-  setSelectedDepartments(tempDepartments);
-  setSelectedPriorities(tempPriorities);
-  setSelectedEmployees(tempEmployees.length > 0 ? [tempEmployees[0]] : []);
-  setIsDropdownOpen(false);
-  setSelectedFilter(null);
-};
+  const applySelectedFilters = () => {
+    setSelectedDepartments(tempDepartments);
+    setSelectedPriorities(tempPriorities);
+    setSelectedEmployees(tempEmployees.length > 0 ? [tempEmployees[0]] : []);
+    setIsDropdownOpen(false);
+    setSelectedFilter(null);
+  };
 
   const removeSelectedFilter = (filterType, filter) => {
     switch (filterType) {

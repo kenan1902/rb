@@ -21,6 +21,9 @@ const Status = ({ statusId, statusName }) => {
         alignItems: "center",
         justifyContent: "center",
         border: "1px solid #DEE2E6",
+        fontFamily: "'FiraGO', sans-serif",
+        fontWeight: 500,
+        fontSize: "20px",
         ...style,
       }}
     >

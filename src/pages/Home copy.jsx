@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Filters from "../components/Filters"; 
 import Status from "../components/Status"; 
@@ -20,8 +19,6 @@ const Home = () => {
     const savedEmployees = localStorage.getItem("selectedEmployees");
     return savedEmployees ? JSON.parse(savedEmployees) : [];
   });
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("https://momentum.redberryinternship.ge/api/tasks", {
@@ -128,11 +125,7 @@ const Home = () => {
             <Status statusId={1} statusName="დასწაყები" />
             <div style={{ marginTop: "10px" }}>
               {groupedTasks[1].map((task) => (
-                <Card 
-                  key={task.id} 
-                  task={task} 
-                  onClick={() => navigate(`/task/${task.id}`)} // Pass the onClick handler
-                />
+                <Card key={task.id} task={task} />
               ))}
             </div>
           </div>
@@ -141,11 +134,7 @@ const Home = () => {
             <Status statusId={2} statusName="პროგრესში" />
             <div style={{ marginTop: "10px" }}>
               {groupedTasks[2].map((task) => (
-                <Card 
-                  key={task.id} 
-                  task={task} 
-                  onClick={() => navigate(`/task/${task.id}`)} // Pass the onClick handler
-                />
+                <Card key={task.id} task={task} />
               ))}
             </div>
           </div>
@@ -154,11 +143,7 @@ const Home = () => {
             <Status statusId={3} statusName="მზად ტესტირებისთვის" />
             <div style={{ marginTop: "10px" }}>
               {groupedTasks[3].map((task) => (
-                <Card 
-                  key={task.id} 
-                  task={task} 
-                  onClick={() => navigate(`/task/${task.id}`)} // Pass the onClick handler
-                />
+                <Card key={task.id} task={task} />
               ))}
             </div>
           </div>
@@ -167,11 +152,7 @@ const Home = () => {
             <Status statusId={4} statusName="დასრულებული" />
             <div style={{ marginTop: "10px" }}>
               {groupedTasks[4].map((task) => (
-                <Card 
-                  key={task.id} 
-                  task={task} 
-                  onClick={() => navigate(`/task/${task.id}`)} // Pass the onClick handler
-                />
+                <Card key={task.id} task={task} />
               ))}
             </div>
           </div>

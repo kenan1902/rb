@@ -1,11 +1,16 @@
 import React from "react";
-import Home from "./pages/Home"; // Import the Home page
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import TaskDetails from "./pages/TaskDetails";
 
 const App = () => {
   return (
-    <div>
-      <Home />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/task/:taskId" element={<TaskDetails />} />
+      </Routes>
+    </Router>
   );
 };
 
