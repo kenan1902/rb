@@ -504,7 +504,7 @@ const CreateTask = () => {
                           height: "46px",
                           borderRadius: "5px",
                           border: "1px solid #DEE2E6",
-                          padding: "14px",
+                          padding: "4px 14px",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "space-between",
@@ -520,7 +520,7 @@ const CreateTask = () => {
                               alt="Priority Logo"
                               style={{
                                 width: "16px",
-                                height: "16px",
+                                height: "8px",
                                 filter: priorityStyles[selectedPriority.id].filter,
                               }}
                             />
@@ -543,7 +543,7 @@ const CreateTask = () => {
                           style={{
                             position: "absolute",
                             top: "50px",
-                            width: "259px",
+                            width: "287px",
                             backgroundColor: "#FFFFFF",
                             border: "1px solid #DEE2E6",
                             borderTop: "none",
@@ -571,7 +571,7 @@ const CreateTask = () => {
                                 alt="Priority Logo"
                                 style={{
                                   width: "16px",
-                                  height: "16px",
+                                  height: "8px",
                                   filter: priorityStyles[priority.id].filter,
                                 }}
                               />
@@ -613,7 +613,7 @@ const CreateTask = () => {
                           height: "46px",
                           borderRadius: "5px",
                           border: "1px solid #DEE2E6",
-                          padding: "14px",
+                          padding: "4px 14px",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "space-between",
@@ -639,7 +639,7 @@ const CreateTask = () => {
                           style={{
                             position: "absolute",
                             top: "50px",
-                            width: "259px",
+                            width: "287px",
                             backgroundColor: "#FFFFFF",
                             border: "1px solid #DEE2E6",
                             borderTop: "none",
@@ -704,7 +704,8 @@ const CreateTask = () => {
                         height: "46px",
                         borderRadius: "5px",
                         border: "1px solid #DEE2E6",
-                        padding: "14px",
+                        padding: "4px 14px",
+                        marginBottom: "29px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
@@ -730,7 +731,7 @@ const CreateTask = () => {
                         style={{
                           position: "absolute",
                           top: "50px",
-                          width: "550px",
+                          width: "578px",
                           backgroundColor: "#FFFFFF",
                           border: "1px solid #DEE2E6",
                           borderTop: "none",
@@ -786,7 +787,8 @@ const CreateTask = () => {
                           height: "46px",
                           borderRadius: "5px",
                           border: "1px solid #DEE2E6",
-                          padding: "14px",
+                          padding: "4px 14px",
+                          marginBottom: "108px",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "space-between",
@@ -811,7 +813,7 @@ const CreateTask = () => {
                             </span>
                           </div>
                         ) : (
-                          <span>Select Employee</span>
+                          <span>თანამშრომელი</span>
                         )}
                         <img
                           src={isEmployeeDropdownOpen ? upLogo : downLogo}
@@ -825,7 +827,7 @@ const CreateTask = () => {
                           style={{
                             position: "absolute",
                             top: "50px",
-                            width: "550px",
+                            width: "578px",
                             backgroundColor: "#FFFFFF",
                             border: "1px solid #DEE2E6",
                             borderTop: "none",
@@ -922,7 +924,7 @@ const CreateTask = () => {
                       height: "46px",
                       borderRadius: "5px",
                       border: `1px solid ${deadlineError ? "#FA4D4D" : deadlineTouched && !deadlineError ? "#08A508" : "#DEE2E6"}`,
-                      padding: "14px",
+                      padding: "4px 14px",
                       display: "flex",
                       alignItems: "center",
                       gap: "6px",
@@ -970,6 +972,7 @@ const CreateTask = () => {
                       height: "42px",
                       borderRadius: "5px",
                       padding: "10px 20px",
+                      marginTop: "50px",
                       fontFamily: "FiraGO",
                       fontWeight: 400,
                       fontSize: "18px",
