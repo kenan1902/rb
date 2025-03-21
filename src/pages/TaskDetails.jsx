@@ -15,6 +15,7 @@ const TaskDetails = () => {
   const [loading, setLoading] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(null);
+  const [statusOptions, setStatusOptions] = useState([]);
 
   const priorityStyles = {
     1: {
@@ -79,6 +80,20 @@ const TaskDetails = () => {
       })
       .catch((error) => console.error("Error fetching task details:", error))
       .finally(() => setLoading(false));
+
+    fetch("https://momentum.redberryinternship.ge/api/statuses", {
+      headers: {
+        Authorization: "Bearer 9e74145e-719b-4838-9eef-0f916cac0f3b",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => setStatusOptions(data))
+      .catch((error) => console.error("Error fetching status options:", error));
   }, [taskId]);
 
   const toggleDropdown = () => {
@@ -88,6 +103,25 @@ const TaskDetails = () => {
   const handleStatusSelect = (status) => {
     setSelectedStatus(status);
     setIsDropdownOpen(false);
+
+    fetch(`https://momentum.redberryinternship.ge/api/tasks/${taskId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer 9e74145e-719b-4838-9eef-0f916cac0f3b",
+      },
+      body: JSON.stringify({ status_id: status.id }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setTask(data);
+      })
+      .catch((error) => console.error("Error updating task status:", error));
   };
 
   if (loading) {
@@ -100,13 +134,6 @@ const TaskDetails = () => {
 
   const priority = priorityStyles[task.priority.id] || {};
   const department = departmentStyles[task.department.id] || { backgroundColor: "#CCCCCC", color: "#000000" };
-
-  const statusOptions = [
-    { id: 1, name: "დასაწყისი" },
-    { id: 2, name: "პროგრესში" },
-    { id: 3, name: "მზად ტესტირებისთვის" },
-    { id: 4, name: "დასრულებული" },
-  ];
 
   return (
     <div>
@@ -264,7 +291,7 @@ const TaskDetails = () => {
               <img
                 src={isDropdownOpen ? upLogo : downLogo}
                 alt="Dropdown Arrow"
-                style={{ width: "14px", height: "7px", filter: "brightness(0) saturate(100%) invert(8%) sepia(10%) saturate(2000%) hue-rotate(170deg) brightness(93%) contrast(101%)" }} // Updated color
+                style={{ width: "14px", height: "7px", filter: "brightness(0) saturate(100%) invert(8%) sepia(10%) saturate(2000%) hue-rotate(170deg) brightness(93%) contrast(101%)" }}
               />
             </div>
 

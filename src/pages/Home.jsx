@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 import Header from "../components/Header";
-import Filters from "../components/Filters"; 
-import Status from "../components/Status"; 
+import Filters from "../components/Filters";
+import Status from "../components/Status";
 import Card from "../components/Card";
 
 const Home = () => {
@@ -20,8 +20,6 @@ const Home = () => {
     const savedEmployees = localStorage.getItem("selectedEmployees");
     return savedEmployees ? JSON.parse(savedEmployees) : [];
   });
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("https://momentum.redberryinternship.ge/api/tasks", {
@@ -52,9 +50,9 @@ const Home = () => {
   const groupTasksByStatus = (tasks) => {
     const groupedTasks = {
       1: [],
-      2: [], 
-      3: [], 
-      4: [], 
+      2: [],
+      3: [],
+      4: [],
     };
 
     tasks.forEach((task) => {
@@ -102,37 +100,35 @@ const Home = () => {
         დავალებების გვერდი
       </h1>
 
-      <Filters 
+      <Filters
         setSelectedDepartments={setSelectedDepartments}
         setSelectedPriorities={setSelectedPriorities}
         setSelectedEmployees={setSelectedEmployees}
-        selectedDepartments={selectedDepartments} 
-        selectedPriorities={selectedPriorities} 
-        selectedEmployees={selectedEmployees} 
+        selectedDepartments={selectedDepartments}
+        selectedPriorities={selectedPriorities}
+        selectedEmployees={selectedEmployees}
       />
 
       <div
         style={{
-          paddingLeft: "120px", 
-          paddingRight: "120px", 
+          paddingLeft: "120px",
+          paddingRight: "120px",
         }}
       >
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "20px", 
+            gap: "20px",
           }}
         >
           <div>
             <Status statusId={1} statusName="დასწაყები" />
             <div style={{ marginTop: "10px" }}>
               {groupedTasks[1].map((task) => (
-                <Card 
-                  key={task.id} 
-                  task={task} 
-                  onClick={() => navigate(`/task/${task.id}`)} // Pass the onClick handler
-                />
+                <Link key={task.id} to={`/task/${task.id}`} style={{ textDecoration: "none" }}> 
+                  <Card task={task} />
+                </Link>
               ))}
             </div>
           </div>
@@ -141,11 +137,9 @@ const Home = () => {
             <Status statusId={2} statusName="პროგრესში" />
             <div style={{ marginTop: "10px" }}>
               {groupedTasks[2].map((task) => (
-                <Card 
-                  key={task.id} 
-                  task={task} 
-                  onClick={() => navigate(`/task/${task.id}`)} // Pass the onClick handler
-                />
+                <Link key={task.id} to={`/task/${task.id}`} style={{ textDecoration: "none" }}> 
+                  <Card task={task} />
+                </Link>
               ))}
             </div>
           </div>
@@ -154,11 +148,9 @@ const Home = () => {
             <Status statusId={3} statusName="მზად ტესტირებისთვის" />
             <div style={{ marginTop: "10px" }}>
               {groupedTasks[3].map((task) => (
-                <Card 
-                  key={task.id} 
-                  task={task} 
-                  onClick={() => navigate(`/task/${task.id}`)} // Pass the onClick handler
-                />
+                <Link key={task.id} to={`/task/${task.id}`} style={{ textDecoration: "none" }}> 
+                  <Card task={task} />
+                </Link>
               ))}
             </div>
           </div>
@@ -167,11 +159,9 @@ const Home = () => {
             <Status statusId={4} statusName="დასრულებული" />
             <div style={{ marginTop: "10px" }}>
               {groupedTasks[4].map((task) => (
-                <Card 
-                  key={task.id} 
-                  task={task} 
-                  onClick={() => navigate(`/task/${task.id}`)} // Pass the onClick handler
-                />
+                <Link key={task.id} to={`/task/${task.id}`} style={{ textDecoration: "none" }}> 
+                  <Card task={task} />
+                </Link>
               ))}
             </div>
           </div>

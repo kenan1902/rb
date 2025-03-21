@@ -96,9 +96,9 @@ const Card = ({ task, onClick }) => {
         flexDirection: "column",
         justifyContent: "space-between",
         margin: "25px 0",
-        cursor: "pointer", // Add cursor pointer to indicate it's clickable
+        cursor: "pointer",
       }}
-      onClick={onClick} // Attach the onClick handler
+      onClick={onClick}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>

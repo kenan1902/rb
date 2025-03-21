@@ -7,6 +7,7 @@ const Comments = ({ taskId }) => {
   const [loading, setLoading] = useState(true);
   const [subComment, setSubComment] = useState("");
   const [replyingTo, setReplyingTo] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -185,6 +186,12 @@ const Comments = ({ taskId }) => {
             cursor: "pointer",
             alignSelf: "flex-end",
           }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.backgroundColor = "#B588F4";
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.backgroundColor = "#8338EC";
+          }}
         >
           დააკომენტარე
         </button>
@@ -301,12 +308,22 @@ const Comments = ({ taskId }) => {
                     fontSize: "12px",
                     lineHeight: "100%",
                     letterSpacing: "0%",
-                    color: "#8338EC",
+                    color: isHovered ? "#B588F4" : "#8338EC",
                     cursor: "pointer",
                   }}
                   onClick={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)}
+                  onMouseOver={() => setIsHovered(true)} 
+                  onMouseOut={() => setIsHovered(false)} 
                 >
-                  <img src={replyArrow} alt="Reply" style={{ width: "12px", height: "12px" }} />
+                  <img
+                    src={replyArrow}
+                    alt="Reply"
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      filter: isHovered ? "brightness(0) saturate(100%) invert(71%) sepia(23%) saturate(1231%) hue-rotate(218deg) brightness(96%) contrast(95%)" : "none",
+                    }}
+                  />
                   <span>უპასუხე</span>
                 </span>
               </div>
@@ -400,6 +417,13 @@ const Comments = ({ taskId }) => {
                       alignItems: "center",
                       justifyContent: "center",
                     }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.querySelector("img").style.filter =
+                        "brightness(0) saturate(100%) invert(71%) sepia(23%) saturate(1231%) hue-rotate(218deg) brightness(96%) contrast(95%)";
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.querySelector("img").style.filter = "none";
+                    }}
                   >
                     <img
                       src={replyArrow}
@@ -416,7 +440,7 @@ const Comments = ({ taskId }) => {
           </div>
         ))
       ) : (
-        <div>No comments found.</div>
+        <div></div>
       )}
     </div>
   );
